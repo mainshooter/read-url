@@ -82,25 +82,29 @@
   $currentLocationWithString;
 
   $url = parseIncomingURL('http://' .$domain . $link);
+  // Get the vull domain location
   $path = replaceString($currentFolder, '', $url['path']);
+  // Get the path link
 
   $controller = getNextThing($path);
+  // Finds the controller
 
   $currentLocationWithString = $controller . '/';
 
   $method = getNextThing(replaceString($currentLocationWithString, '', $path));
+  // Gets method
 
   $currentLocationWithString .= $method . '/';
 
   $howManyParameters = countSlashes(replaceString($currentLocationWithString, '', $path)) + 1;
+  // Gets the count of how many parameters there are
+  // We add one because we else would mis one
 
   for ($i=0; $i < $howManyParameters; $i++) {
     $parameter[] = getNextThing(replaceString($currentLocationWithString, '', $path));
     $currentLocationWithString .= $parameter[$i] . '/';
   }
-  echo "<pre>";
-  var_dump($parameter);
-  echo "</pre>";
+  // Gets all parameters
 
   echo "Path: " . $path;
   echo "<br />";
@@ -108,7 +112,10 @@
   echo "<br />";
   echo "Method: " . $method;
   echo "<br />";
-  // echo "Parameter: " . $parameter;
+  echo "Parameter";
+  echo "<pre>";
+  var_dump($parameter);
+  echo "</pre>";
 
   // eerste is de controller
   // twee de methode
