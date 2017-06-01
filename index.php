@@ -112,7 +112,7 @@
   echo "<br />";
   echo "Method: " . $method;
   echo "<br />";
-  echo "Parameter";
+  echo "Parameters: ";
   echo "<pre>";
   var_dump($parameter);
   echo "</pre>";
