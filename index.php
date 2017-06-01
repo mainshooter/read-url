@@ -2,7 +2,7 @@
 
   $link = $_SERVER['REQUEST_URI'];
 
-  $link .= "order/";
+  $link .= "order/read/53983/56325fdaffd/gfsht4whtewh/vboyahvgybowabhru";
 
   $domain = $_SERVER['SERVER_NAME'];
   $currentFolder = '/leerjaar2/php/read-url/';
@@ -22,9 +22,14 @@
   echo "<br />";
   echo "PRE Controller: " . $controller;
   echo "<br />";
-  echo "Controllernaam: " . getController($controller);
+  echo "Controllernaam: " . getNextThing($controller);
+  echo "<br />";
 
-  function getController($string) {
+  echo "<pre>";
+    var_dump(parseIncomingURL('http://' .$domain . $link));
+  echo "</pre>";
+
+  function getNextThing($string) {
     $array = stringToArray($string);
     $resultArray;
 
@@ -59,8 +64,54 @@
     return($string);
   }
 
-  function displayOrder() {
-    echo "order: 4323";
+  function countSlashes($string) {
+    $array = stringToArray($string);
+    $count = 0;
+    foreach ($array as $key) {
+      if ($key == '/') {
+        $count++;
+      }
+    }
+
+    return($count);
   }
+
+  function parseIncomingURL($url) {
+    return(parse_url($url));
+  }
+  $currentLocationWithString;
+
+  $url = parseIncomingURL('http://' .$domain . $link);
+  $path = replaceString($currentFolder, '', $url['path']);
+
+  $controller = getNextThing($path);
+
+  $currentLocationWithString = $controller . '/';
+
+  $method = getNextThing(replaceString($currentLocationWithString, '', $path));
+
+  $currentLocationWithString .= $method . '/';
+
+  $howManyParameters = countSlashes(replaceString($currentLocationWithString, '', $path)) + 1;
+
+  for ($i=0; $i < $howManyParameters; $i++) {
+    $parameter[] = getNextThing(replaceString($currentLocationWithString, '', $path));
+    $currentLocationWithString .= $parameter[$i] . '/';
+  }
+  echo "<pre>";
+  var_dump($parameter);
+  echo "</pre>";
+
+  echo "Path: " . $path;
+  echo "<br />";
+  echo "Controller: " . $controller;
+  echo "<br />";
+  echo "Method: " . $method;
+  echo "<br />";
+  // echo "Parameter: " . $parameter;
+
+  // eerste is de controller
+  // twee de methode
+  // 3de en verder de parameters
 
 ?>
