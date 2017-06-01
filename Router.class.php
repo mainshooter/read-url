@@ -22,11 +22,14 @@
       $this->method = $this->getMethod($this->path);
       $this->parameters = $this->getParamters($this->path);
 
+      echo $this->path;
+      echo "<br>";
       echo $this->controller;
       echo "<br>";
       echo $this->method;
-      echo "<br>";
+      echo "<pre>";
       var_dump($this->parameters);
+      echo "</pre>";
     }
 
     /**
