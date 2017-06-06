@@ -24,7 +24,8 @@
           // The default path what we are gone do
       }
       else {
-        $this->path = $this->url['path'];
+        $this->path = $this->replaceString('/leerjaar2/php/read-url/', '', $this->url['path']);
+        // $this->path =
       }
     }
 
