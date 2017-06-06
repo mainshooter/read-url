@@ -1,5 +1,5 @@
 <?php
-  require_once 'Order.class.php';
+  require_once 'controller/order.php';
   class Router {
     private $url;
     private $path;
