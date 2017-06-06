@@ -1,6 +1,8 @@
 <?php
   require_once 'controller/Order.php';
   class Router {
+    var $defaultLocation;
+
     private $url;
     private $path;
 
@@ -12,12 +14,14 @@
     private $parameters;
 
     function __construct() {
+
       $this->url = parse_url($_SERVER['REQUEST_URI']);
+      $this->path = $this->url['path'];
 
 
-
-      if ($this->path = '/leerjaar2/php/read-url/') {
-          $this->path = 'order/delete/';
+      if ($this->path == '/leerjaar2/php/read-url/') {
+          $this->path = 'order/read/';
+          // The default path what we are gone do
       }
       else {
         $this->path = $this->url['path'];
