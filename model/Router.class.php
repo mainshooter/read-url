@@ -1,5 +1,5 @@
 <?php
-  require_once 'controller/Order.php';
+  require_once 'controller/order.Controller.php';
   class Router {
     var $defaultLocation;
     var $defaultController;
@@ -31,7 +31,7 @@
     }
 
     public function procesTheURL() {
-      $this->controller = $this->getController($this->path);
+      $this->controller = $this->getController($this->path) . 'Controller';
       $this->method = $this->getMethod($this->path);
       $this->parameters = $this->getParamters($this->path);
 
