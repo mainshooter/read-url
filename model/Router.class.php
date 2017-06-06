@@ -1,5 +1,5 @@
 <?php
-  require_once 'controller/order.php';
+  require_once 'controller/Order.php';
   class Router {
     private $url;
     private $path;
@@ -13,8 +13,15 @@
 
     function __construct() {
       $this->url = parse_url($_SERVER['REQUEST_URI']);
-      $this->path = $this->url['path'];
-      $this->path = 'order/read/frsafdsa/fdsa/fds/ag/rqh/3qg/3qg/rw/';
+
+
+
+      if ($this->path = '/leerjaar2/php/read-url/') {
+          $this->path = 'order/delete/';
+      }
+      else {
+        $this->path = $this->url['path'];
+      }
     }
 
     public function procesTheURL() {
@@ -178,7 +185,4 @@
 
 
   }
-  $Router = new Router();
-  $Router->procesTheURL();
-
 ?>
