@@ -1,10 +1,16 @@
 <?php
 
-  class Order {
+  class order {
+
+    public function default() {
+      echo "Default";
+    }
+
     public function read($array) {
-      echo "<pre>";
-      var_dump($array);
-      echo "</pre>";
+      echo "string";
+    }
+    public function delete() {
+      echo "lol!";
     }
   }
 
