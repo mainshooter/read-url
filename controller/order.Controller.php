@@ -7,12 +7,12 @@
     }
 
     public function read($parameters) {
-      $Order = new OrderClass();
+      $Order = new order();
       $Order->read($parameters);
     }
 
     public function delete() {
-      $Order = new OrderClass();
+      $Order = new order();
       $Order->delete();
     }
   }
