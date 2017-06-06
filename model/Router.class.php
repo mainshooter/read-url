@@ -2,6 +2,8 @@
   require_once 'controller/Order.php';
   class Router {
     var $defaultLocation;
+    var $defaultController;
+    var $defaultMethod;
 
     private $url;
     private $path;
@@ -25,7 +27,6 @@
       }
       else {
         $this->path = $this->replaceString('/leerjaar2/php/read-url/', '', $this->url['path']);
-        // $this->path =
       }
     }
 
@@ -35,6 +36,10 @@
       $this->parameters = $this->getParamters($this->path);
 
       $this->debug();
+
+      if ($this->method == '') {
+        $this->method = 'default';
+      }
 
       $controller = new $this->controller;
       $method = $this->method;
