@@ -1,5 +1,5 @@
 <?php
-
+  require_once 'Order.class.php';
   class Router {
     private $url;
     private $path;
@@ -22,6 +22,22 @@
       $this->method = $this->getMethod($this->path);
       $this->parameters = $this->getParamters($this->path);
 
+      $this->debug();
+
+      $controller = new $this->controller;
+      $method = $this->method;
+      $parameters = $this->parameters;
+
+      call_user_func_array(array($controller, $method), [$parameters]);
+        // Controller is the name of the controller
+        // The method is the method of the controller
+        // parameters is send as a array in a array to be send as a array
+    }
+
+    /*
+      Debugs the incomeing request
+     */
+    public function debug() {
       echo "Path: " . $this->path;
       echo "<br>";
       echo "Controller: " . $this->controller;
