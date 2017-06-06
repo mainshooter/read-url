@@ -43,7 +43,10 @@
 
       for ($i=0; $i < $howManyParameters; $i++) {
         $this->parameters[] = $this->getNextValue($this->locationOfThePath);
+        // This gets all new parameters
+
         $this->locationOfThePath .= $this->parameters[$i] . '/';
+        // To save what we already have done
       }
 
       return($this->parameters);
@@ -81,6 +84,7 @@
       $this->method = $this->getNextValue($this->locationOfThePath);
 
       $this->locationOfThePath .= $this->method . '/';
+      // To save what we already have done
 
       return($this->method);
     }
@@ -111,6 +115,7 @@
       $this->controller = $this->getNextValue($this->locationOfThePath);
 
       $this->locationOfThePath .= $this->controller . '/';
+      // To save what we already have done
 
       return($this->controller);
     }
