@@ -38,6 +38,7 @@
      */
     private function getParamters() {
       $location = $this->replaceString($this->locationOfThePath, '', $this->path);
+      // To get remove from the location what we already have done
 
       $howManyParameters = $this->countSlashes($location);
 
@@ -59,6 +60,8 @@
      */
     private function getNextValue($string) {
       $string = $this->replaceString($string, '', $this->path);
+      // To get remove from the location what we already have done
+
       $array = $this->stringToArray($string);
       $resultArray;
 
