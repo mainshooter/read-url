@@ -1,16 +1,32 @@
 <?php
-
+  require_once 'databaseHandler.class.php';
   class order {
 
-    public function default() {
-      echo "Default";
+
+    /**
+     * Get all orders from the db
+     * @return [assoc array] [The result from the db]
+     */
+    public function getAllOrders() {
+      $Db = new db();
+
+      $sql = "SELECT * FROM `Order`";
+      $input = array();
+
+      return($Db->readData($sql, $input));
     }
 
-    public function read($array) {
-      echo "string";
-    }
-    public function delete() {
-      echo "lol!";
+    /**
+     * Get all headers from the db
+     * @return [assoc array] [The result from the db]
+     */
+    public function getOrderHeaders() {
+      $Db = new db();
+
+      $sql = "SELECT * FROM `Order` LIMIT 1";
+      $input = array();
+
+      return($Db->readData($sql, $input));
     }
   }
 
