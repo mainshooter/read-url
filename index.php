@@ -13,5 +13,8 @@
   $Router->siteLocation = $config['base_url'];
 
   $Router->procesTheURL();
-  $Router->debug();
+
+  if ($config['router-debug']) {
+    $Router->debug();  
+  }
 ?>
