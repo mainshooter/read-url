@@ -1,5 +1,6 @@
 <?php
-  echo "<table class='col-12'>";
+echo "<div class='col-8'>";
+  echo "<table>";
   foreach ($orderHeaders as $row) {
     echo "<tr>";
     foreach ($row as $key => $value) {
@@ -22,6 +23,7 @@
   }
 
 echo "</table>";
+echo "</div>";
 
 
 ?>
