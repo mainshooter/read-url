@@ -11,11 +11,16 @@
   foreach ($orders as $row) {
     echo "<tr>";
     foreach ($row as $key => $value) {
-      echo "<td>" . $value . "</td>";
+      if ($key == 'idOrder') {
+          echo "<td><a href='order/readOrder/" . $value . "'>" . $value . "</a></td>";
+      }
+      else {
+          echo "<td>" . $value . "</td>";
+      }
     }
     echo "</tr>";
   }
-  
+
 echo "</table>";
 
 

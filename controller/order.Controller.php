@@ -26,9 +26,23 @@
       include 'view/footer.html';
     }
 
+    /**
+     * Get the details and order items from one order
+     * @param  [array] $parameterArray [With the ID from the URL]
+     */
     public function readOrder($parameterArray) {
       $Order = new order();
-      $Order->read($parameterArray[0]);
+
+      $orderID = $parameterArray[0];
+
+      $orderHeaders = $this->Order->getOrderHeaders();
+      $orderDetails = $this->Order->orderDetails($orderID);
+      $orderItemHeader = $this->Order->getOrderItemHeaders();
+      $orderItems = $this->Order->getOrderItems($orderID);
+
+      include 'view/header.html';
+      include 'view/orderDetails.php';
+      include 'view/footer.html';
     }
 
     public function delete() {
