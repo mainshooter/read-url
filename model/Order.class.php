@@ -10,7 +10,16 @@
     public function getAllOrders() {
       $Db = new db();
 
-      $sql = "SELECT idOrder, klant_voornaam, klant_achternaam, klant_tussenvoegsel, klant_straat, klant_huisnummer, klant_huisnummertoevoegingen, klant_postcode, klant_email, order_status, betaal_status FROM `Order`";
+      $sql = "SELECT idOrder, klant_email, order_status, betaal_status FROM `Order`";
+      $input = array();
+
+      return($Db->readData($sql, $input));
+    }
+
+    public function getOrderHeadersForOrderView() {
+      $Db = new db();
+
+      $sql = "SELECT idOrder, klant_email, order_status, betaal_status FROM `Order` LIMIT 1";
       $input = array();
 
       return($Db->readData($sql, $input));
@@ -23,7 +32,7 @@
     public function getOrderHeaders() {
       $Db = new db();
 
-      $sql = "SELECT idOrder, klant_voornaam, klant_achternaam, klant_tussenvoegsel, klant_straat, klant_huisnummer, klant_huisnummertoevoegingen, klant_postcode, klant_email, order_status, betaal_status  FROM `Order` LIMIT 1";
+      $sql = "SELECT idOrder ,klant_email, order_status, betaal_status  FROM `Order` LIMIT 1";
       $input = array();
 
       return($Db->readData($sql, $input));
@@ -37,7 +46,7 @@
     public function orderDetails($orderID) {
       $Db = new db();
 
-      $sql = "SELECT idOrder, klant_voornaam, klant_achternaam, klant_tussenvoegsel, klant_straat, klant_huisnummer, klant_huisnummertoevoegingen, klant_postcode, klant_email, order_status, betaal_status FROM `Order` WHERE idOrder=:orderID";
+      $sql = "SELECT idOrder, klant_email, order_status, betaal_status FROM `Order` WHERE idOrder=:orderID";
       $input = array(
         "orderID" => $orderID
       );
@@ -52,7 +61,7 @@
     public function getOrderItemHeaders() {
       $Db = new db();
 
-      $sql = "SELECT * FROM order_item LIMIT 1";
+      $sql = "SELECT naam, order_item.prijs, aantal FROM order_item JOIN Product ON Product_idProduct=idProduct LIMIT 1";
       $input = array();
 
       return($Db->readData($sql, $input));
@@ -66,7 +75,7 @@
     public function getOrderItems($orderID) {
       $Db = new db();
 
-      $sql = "SELECT * FROM order_item WHERE Order_idOrder=:orderID";
+      $sql = "SELECT naam, order_item.prijs, aantal FROM order_item JOIN Product ON Product_idProduct=idProduct WHERE Order_idOrder=:orderID";
       $input = array(
         "orderID" => $orderID
       );

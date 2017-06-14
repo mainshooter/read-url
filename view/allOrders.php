@@ -13,7 +13,7 @@ echo "<div class='col-8'>";
     echo "<tr>";
     foreach ($row as $key => $value) {
       if ($key == 'idOrder') {
-          echo "<td><a href='order/readOrder/" . $value . "'>" . $value . "</a></td>";
+          echo "<td><a href='order/read/" . $value . "'>" . $value . "</a></td>";
       }
       else {
           echo "<td>" . $value . "</td>";

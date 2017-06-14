@@ -30,12 +30,12 @@
      * Get the details and order items from one order
      * @param  [array] $parameterArray [With the ID from the URL]
      */
-    public function readOrder($parameterArray) {
+    public function read($parameterArray) {
       $Order = new order();
 
       $orderID = $parameterArray[0];
 
-      $orderHeaders = $this->Order->getOrderHeaders();
+      $orderHeaders = $this->Order->getOrderHeadersForOrderView();
       $orderDetails = $this->Order->orderDetails($orderID);
       $orderItemHeader = $this->Order->getOrderItemHeaders();
       $orderItems = $this->Order->getOrderItems($orderID);
