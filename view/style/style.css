@@ -2,9 +2,24 @@ body, html {
   padding: 0;
   margin: 0;
 }
+
+.header {
+  background-color: #c0392b;
+}
 .header a {
   color: white;
   text-decoration: none;
+}
+.header h1 {
+  font-weight: lighter;
+  font-size: 1.4em;
+}
+.menu ul li {
+  background-color: #f39c12;
+}
+.menu ul li:hover {
+  background-color: #e67e22;
+  transition: 0.1s;
 }
 
 table {
@@ -27,6 +42,11 @@ th, td {
   border: 1px solid black;
   border-collapse: collapse;
   padding: 0.7em;
+}
+
+.footer h1 {
+  font-weight: lighter;
+  font-size: 1.7em;
 }
 
 @media only screen and (min-width: 768px) {
