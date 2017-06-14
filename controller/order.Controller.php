@@ -21,7 +21,7 @@
       $orders = $this->Order->getAllOrders();
       $orderHeaders = $this->Order->getOrderHeaders();
 
-      include 'view/header.html';
+      include 'view/header.php';
       include 'view/allOrders.php';
       include 'view/footer.html';
     }
@@ -40,7 +40,7 @@
       $orderItemHeader = $this->Order->getOrderItemHeaders();
       $orderItems = $this->Order->getOrderItems($orderID);
 
-      include 'view/header.html';
+      include 'view/header.php';
       include 'view/orderDetails.php';
       include 'view/footer.html';
     }
