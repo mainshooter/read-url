@@ -1,7 +1,7 @@
 <?php
   require_once 'controller/order.Controller.php';
   class Router {
-    var $defaultLocation;
+
     var $defaultController;
     var $defaultMethod;
 
@@ -15,19 +15,26 @@
     private $method;
     private $parameters;
 
-    function __construct() {
+
+    function __construct($defaultController) {
 
       $this->url = parse_url($_SERVER['REQUEST_URI']);
       $this->path = $this->url['path'];
 
 
       if ($this->path == '/leerjaar2/php/read-url/') {
-          $this->path = 'order/read/';
+          $this->path = $defaultController;
           // The default path what we are gone do
       }
       else {
         $this->path = $this->replaceString('/leerjaar2/php/read-url/', '', $this->url['path']);
+        // The slash is te prefent that the router thinks that there are parameters when there arent
       }
+
+      if (!$this->checkIfLastValueIsASlash($this->path)) {
+        $this->path .= '/';
+      }
+
     }
 
     public function procesTheURL() {
@@ -38,6 +45,7 @@
       $this->debug();
 
       if ($this->method == '') {
+        // If we don't get a method, we use the default method in the controller
         $this->method = 'default';
       }
 
@@ -52,7 +60,7 @@
     }
 
     /*
-      Debugs the incomeing request
+      Debugs the incoming request
      */
     public function debug() {
       echo "Path: " . $this->path;
@@ -65,6 +73,18 @@
       echo "<pre>";
       var_dump($this->parameters);
       echo "</pre>";
+    }
+
+    private function checkIfLastValueIsASlash($string) {
+      $array = $this->stringToArray($string);
+      $arrayLenght = count($array) - 1;
+
+      if ($array[$arrayLenght] != '/') {
+        return(false);
+      }
+      else {
+        return(true);
+      }
     }
 
     /**
@@ -134,6 +154,7 @@
      */
     private function countSlashes($string) {
       $array = $this->stringToArray($string);
+
       $count = 0;
       foreach ($array as $key) {
         if ($key == '/') {
