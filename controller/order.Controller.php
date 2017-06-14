@@ -1,11 +1,14 @@
 <?php
   require_once 'model/Order.class.php';
+  require_once 'model/HtmlGenerator.class.php';
 
   class orderController {
     private $Order;
+    private $HtmlGenerator;
 
     function __construct() {
       $this->Order = new Order();
+      $this->HtmlGenerator = new HtmlGenerator();
     }
 
 
@@ -19,7 +22,7 @@
      */
     public function displayAllOrders() {
       $orders = $this->Order->getAllOrders();
-      $orderHeaders = $this->Order->getOrderHeaders();
+      $orderHeaders = ['orderID', 'Klant email', 'Order status', 'Betaal status'];
 
       include 'view/header.php';
       include 'view/allOrders.php';
@@ -35,9 +38,9 @@
 
       $orderID = $parameterArray[0];
 
-      $orderHeaders = $this->Order->getOrderHeadersForOrderView();
+      $orderHeaders = ['orderID', 'Klant email', 'Order status', 'Betaal status'];
       $orderDetails = $this->Order->orderDetails($orderID);
-      $orderItemHeader = $this->Order->getOrderItemHeaders();
+      $orderItemHeader = ['Product', 'Prijs', 'Aantal'];
       $orderItems = $this->Order->getOrderItems($orderID);
 
       include 'view/header.php';
