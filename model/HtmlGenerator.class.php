@@ -1,6 +1,38 @@
 <?php
   class HtmlGenerator {
 
+
+    /**
+     * generates a Table
+     * @param  [assoc array] $header [The header names]
+     * @param  [assoc array] $rows   [The rows content]
+     * @return [string / html]         [The table]
+     */
+    public function generateTable($header, $rows) {
+      $table = '
+        <table>
+      ';
+
+      foreach ($header as $row) {
+        $table .= '<tr>';
+        foreach ($row as $key => $value) {
+          $table .= '<th>' . $key . '</th>';
+        }
+        $table .= '</tr>';
+      }
+
+      foreach ($rows as $row) {
+        $table .= '<tr>';
+        foreach ($row as $key => $value) {
+          $table .= '<td>' . $value . '</td>';
+        }
+        $table .= '</tr>';
+      }
+
+      $table .= '</table>';
+      return($table);
+    }
+
     /**
      * Prepares for the generate of the HTML selectBOS
      * @param  [string] $type [The colom we want to display]
