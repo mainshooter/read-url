@@ -2,6 +2,7 @@
   require_once 'controller/order.Controller.php';
   class Router {
 
+    var $siteLocation;
     var $defaultController;
     var $defaultMethod;
 
@@ -24,12 +25,12 @@
 
 
     public function procesTheURL() {
-      if ($this->path == '/leerjaar2/php/read-url/') {
+      if ($this->path == $this->siteLocation) {
           $this->path = $this->defaultController . '/' . $this->defaultMethod . '/';
           // The default path what we are gone do
       }
       else {
-        $this->path = $this->replaceString('/leerjaar2/php/read-url/', '', $this->url['path']);
+        $this->path = $this->replaceString($this->siteLocation, '', $this->url['path']);
         // The slash is te prefent that the router thinks that there are parameters when there arent
       }
 
