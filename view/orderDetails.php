@@ -1,5 +1,5 @@
 <?php
-  echo "<table>";
+  echo "<table class='col-12'>";
 
   foreach ($orderHeaders as $row) {
     echo "<tr>";
