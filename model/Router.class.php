@@ -73,6 +73,7 @@
      */
     public function debug() {
       echo '<div style="font-size: 1.6em;padding: 1em;">';
+        echo "<h2 style='padding: 0; margin: 4px;'>Router debug</h2>";
         echo "Path: " . $this->path;
         echo "<br>";
         echo "Controller: " . $this->controller;
