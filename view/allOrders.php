@@ -1,13 +1,11 @@
 <?php
 echo "<div class='col-8'>";
   echo "<table>";
+  echo "<tr>";
   foreach ($orderHeaders as $row) {
-    echo "<tr>";
-    foreach ($row as $key => $value) {
-      echo "<th>" . $key . "</th>";
+      echo "<th>" . $row . "</th>";
     }
     echo "</tr>";
-  }
 
   foreach ($orders as $row) {
     echo "<tr>";
