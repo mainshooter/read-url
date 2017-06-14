@@ -4,7 +4,7 @@
 
     /**
      * generates a Table
-     * @param  [assoc array] $header [The header names]
+     * @param  [array] $header [The header names]
      * @param  [assoc array] $rows   [The rows content]
      * @return [string / html]         [The table]
      */
@@ -13,13 +13,11 @@
         <table>
       ';
 
-      foreach ($header as $row) {
         $table .= '<tr>';
-        foreach ($row as $key => $value) {
+        foreach ($header as $key) {
           $table .= '<th>' . $key . '</th>';
         }
         $table .= '</tr>';
-      }
 
       foreach ($rows as $row) {
         $table .= '<tr>';
