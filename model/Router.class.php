@@ -16,14 +16,16 @@
     private $parameters;
 
 
-    function __construct($defaultController) {
+    function __construct() {
 
       $this->url = parse_url($_SERVER['REQUEST_URI']);
       $this->path = $this->url['path'];
+    }
 
 
+    public function procesTheURL() {
       if ($this->path == '/leerjaar2/php/read-url/') {
-          $this->path = $defaultController;
+          $this->path = $this->defaultController . '/' . $this->defaultMethod . '/';
           // The default path what we are gone do
       }
       else {
@@ -35,28 +37,32 @@
         $this->path .= '/';
       }
 
-    }
 
-    public function procesTheURL() {
       $this->controller = $this->getController($this->path) . 'Controller';
       $this->method = $this->getMethod($this->path);
       $this->parameters = $this->getParamters($this->path);
 
-      $this->debug();
-
       if ($this->method == '') {
         // If we don't get a method, we use the default method in the controller
-        $this->method = 'default';
+        $this->method = $this->defaultMethod;
       }
+    }
 
+    /**
+     * Well we make everything for the call user func array and send it away to the controller
+     * @param  [string] $controller [The name of the controller]
+     * @param  [string] $method     [The name of the method]
+     * @param  [array] $parameters [the parameters we got from the url]
+     */
+    private function sendToDestination($controller, $method, $parameters) {
       $controller = new $this->controller;
       $method = $this->method;
       $parameters = $this->parameters;
 
       call_user_func_array(array($controller, $method), [$parameters]);
-        // Controller is the name of the controller
-        // The method is the method of the controller
-        // parameters is send as a array in a array to be send as a array
+      // Controller is the name of the controller
+      // The method is the method of the controller
+      // parameters is send as a array in a array to be send as a array
     }
 
     /*
