@@ -17,7 +17,8 @@ echo "<div class='col-8'>";
     }
     echo "</tr>";
   }
-
+  echo "</table>";
+echo "<table>";
   foreach ($orderItemHeader as $row) {
     echo "<tr>";
     foreach ($row as $key => $value) {
