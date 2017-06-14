@@ -46,6 +46,8 @@
         // If we don't get a method, we use the default method in the controller
         $this->method = $this->defaultMethod;
       }
+
+      $this->sendToDestination();
     }
 
     /**
@@ -54,7 +56,7 @@
      * @param  [string] $method     [The name of the method]
      * @param  [array] $parameters [the parameters we got from the url]
      */
-    private function sendToDestination($controller, $method, $parameters) {
+    private function sendToDestination() {
       $controller = new $this->controller;
       $method = $this->method;
       $parameters = $this->parameters;
@@ -69,16 +71,18 @@
       Debugs the incoming request
      */
     public function debug() {
-      echo "Path: " . $this->path;
-      echo "<br>";
-      echo "Controller: " . $this->controller;
-      echo "<br>";
-      echo "Methode: " . $this->method;
-      echo "<br>";
-      echo "Parameters: ";
-      echo "<pre>";
-      var_dump($this->parameters);
-      echo "</pre>";
+      echo '<div style="font-size: 1.6em;padding: 1em;">';
+        echo "Path: " . $this->path;
+        echo "<br>";
+        echo "Controller: " . $this->controller;
+        echo "<br>";
+        echo "Methode: " . $this->method;
+        echo "<br>";
+        echo "Parameters: ";
+        echo "<pre>";
+        var_dump($this->parameters);
+        echo "</pre>";
+      echo "</div>";
     }
 
     private function checkIfLastValueIsASlash($string) {
