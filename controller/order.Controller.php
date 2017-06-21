@@ -1,6 +1,7 @@
 <?php
   require_once 'model/Order.class.php';
   require_once 'model/HtmlGenerator.class.php';
+  require_once 'model/TemplatingSystem.class.php';
 
   class orderController {
     private $Order;
@@ -21,11 +22,13 @@
      * @return [type] [description]
      */
     public function displayAllOrders() {
+      $TemplatingSystem = new TemplatingSystem();
       $orders = $this->Order->getAllOrders();
       $orderHeaders = ['orderID', 'Klant email', 'Order status', 'Betaal status'];
 
       include 'view/header.php';
-      include 'view/allOrders.php';
+
+        include 'view/allOrders.php';
       include 'view/footer.html';
     }
 
@@ -44,7 +47,7 @@
       $orderItems = $this->Order->getOrderItems($orderID);
 
       include 'view/header.php';
-      include 'view/orderDetails.php';
+        include 'view/orderDetails.php';
       include 'view/footer.html';
     }
 
