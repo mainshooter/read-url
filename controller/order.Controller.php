@@ -23,10 +23,16 @@
      */
     public function displayAllOrders() {
       $TemplatingSystem = new TemplatingSystem();
+      $TemplatingSystem->path = 'view/template/';
+
       $orders = $this->Order->getAllOrders();
       $orderHeaders = ['orderID', 'Klant email', 'Order status', 'Betaal status'];
 
       include 'view/header.php';
+
+
+          $TemplatingSystem->setTemplateData('name', 'Peter Romijn');
+          echo $TemplatingSystem->parseTemplate();
 
         include 'view/allOrders.php';
       include 'view/footer.html';
