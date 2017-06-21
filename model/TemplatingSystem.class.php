@@ -3,7 +3,7 @@
 
   class TemplatingSystem {
     public $template = 'default.tpl';
-    public $templateLayout;
+    private $templateLayout;
 
     public $canWeRun;
     private $error = '';
@@ -19,17 +19,14 @@
           if (pathinfo('view/template/' . $template)['extension'] == 'tpl') {
             // To check the template extension we check on the [2] position of the pathinfo()
             $this->template = $template;
-            $this->canWeRun = true;
           }
           else {
             $this->error = "Wrong extension it isn't tpl";
-            $this->canWeRun = false;
           }
         }
 
         else {
           $this->error = "File doesn't exists";
-          $this->canWeRun = false;
         }
       }
     }
@@ -39,6 +36,7 @@
      */
     public function readTemplate() {
       $this->templateLayout = file_get_contents('view/template/' . $this->template);
+        $this->canWeRun = true;
       return($this->templateLayout);
     }
 
@@ -53,6 +51,20 @@
           $this->readTemplate();
         }
           $this->templateLayout = preg_replace('#\{' . $patteren . '\}#si', $replacement, $this->templateLayout);
+    }
+
+    /**
+     * Returns the template with the data we set with it
+     * @return [string] [errors or the template layout]
+     */
+    public function parseTemplate() {
+      if ($this->error == '') {
+        // If there are no error's
+        return($this->templateLayout);
+      }
+      else {
+        return($this->error);
+      }
     }
 
 
