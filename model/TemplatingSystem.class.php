@@ -3,11 +3,11 @@
 
   class TemplatingSystem {
     public $template = 'default.tpl';
-    public $path = 'view/template'
+    public $path = 'view/template';
 
     private $templateLayout;
 
-    public $weDidRun;
+    private $weDidRun;
     // To check if we readed our template
 
     private $error = '';
