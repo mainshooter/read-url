@@ -3,10 +3,15 @@
 
   class TemplatingSystem {
     public $template = 'default.tpl';
+    public $path = 'view/template'
+
     private $templateLayout;
 
-    public $canWeRun;
+    public $weDidRun;
+    // To check if we readed our template
+
     private $error = '';
+    // To save our error's
 
 
     /**
@@ -15,8 +20,8 @@
      */
     function __construct($template = false) {
       if ($template) {
-        if (file_exists('view/template/' . $template)) {
-          if (pathinfo('view/template/' . $template)['extension'] == 'tpl') {
+        if (file_exists($this->path . $template)) {
+          if (pathinfo($this->path . $template)['extension'] == 'tpl') {
             // To check the template extension we check on the [2] position of the pathinfo()
             $this->template = $template;
           }
@@ -35,8 +40,8 @@
      * [readTemplate read the template]
      */
     public function readTemplate() {
-      $this->templateLayout = file_get_contents('view/template/' . $this->template);
-        $this->canWeRun = true;
+      $this->templateLayout = file_get_contents($this->path . $this->template);
+        $this->weDidRun = true;
       return($this->templateLayout);
     }
 
@@ -47,7 +52,7 @@
      * @param [string] $replacement [The string we want to replace it with]
      */
     public function setTemplateData($patteren, $replacement) {
-        if (!$this->canWeRun) {
+        if (!$this->weDidRun) {
           $this->readTemplate();
         }
           $this->templateLayout = preg_replace('#\{' . $patteren . '\}#si', $replacement, $this->templateLayout);
