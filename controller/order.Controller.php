@@ -28,6 +28,10 @@
 
       include 'view/header.php';
 
+
+          $TemplatingSystem->setTemplateData('name', 'Peter Romijn');
+          echo $TemplatingSystem->templateLayout;
+
         include 'view/allOrders.php';
       include 'view/footer.html';
     }
