@@ -30,7 +30,7 @@
 
 
           $TemplatingSystem->setTemplateData('name', 'Peter Romijn');
-          echo $TemplatingSystem->templateLayout;
+          echo $TemplatingSystem->parseTemplate();
 
         include 'view/allOrders.php';
       include 'view/footer.html';
