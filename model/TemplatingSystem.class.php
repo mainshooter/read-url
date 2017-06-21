@@ -35,8 +35,7 @@
     }
 
     /**
-     * [readTemplate description]
-     * @return [type] [description]
+     * [readTemplate read the template]
      */
     public function readTemplate() {
       $this->templateLayout = file_get_contents('view/template/' . $this->template);
